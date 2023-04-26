@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"        
         xmlns:local="clr-namespace:IcarusV1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="850">
     <Grid>
         <TextBox x:Name="modelTextBox" HorizontalAlignment="Left" Margin="156,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="204" FontSize="14" RenderTransformOrigin="-0.333,0.541"/>
         <Label Content="Drone Model" HorizontalAlignment="Left" Margin="40,101,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.125,0.464" FontSize="14"/>
@@ -18,6 +18,13 @@
         <Label Content="Service Tag" HorizontalAlignment="Left" Margin="40,304,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.463,-1.154" FontSize="14"/>
         <TextBox HorizontalAlignment="Left" Margin="156,308,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="82" FontSize="14" RenderTransformOrigin="-0.333,0.541" Text="UpDown"/>
         <Label Content="Drove Service Application" HorizontalAlignment="Left" Margin="40,24,0,0" VerticalAlignment="Top" FontSize="24" RenderTransformOrigin="0.416,0.526"/>
+        <ListView d:ItemsSource="{d:SampleData ItemCount=5}" Margin="374,45,24,67">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
 
 
 
