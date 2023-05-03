@@ -24,5 +24,15 @@ namespace IcarusV1
         {
             InitializeComponent();
         }
+
+        private void expressFinishedButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void regularFinishedButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
