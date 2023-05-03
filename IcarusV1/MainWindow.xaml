@@ -7,8 +7,8 @@
         xmlns:local="clr-namespace:IcarusV1"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="850">
-    <Grid Margin="0,0,0,-24" Height="450" VerticalAlignment="Bottom">
-        <wpfx:IntegerUpDown x:Name="tagUpDown" Value="100" FormatString="F" Margin="127,312,650,89" RenderTransformOrigin="0.5,0.5" Increment="10" >
+    <Grid Height="450">
+        <wpfx:IntegerUpDown x:Name="tagUpDown" Value="100" FormatString="F" Margin="127,0,650,89" RenderTransformOrigin="0.5,0.5" Increment="10" Height="49" VerticalAlignment="Bottom" >
             <wpfx:IntegerUpDown.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="1"/>
@@ -34,7 +34,12 @@
                     <ListView x:Name="regularLVI" Width="425" Margin="0,0,0,30" Grid.ColumnSpan="2">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn/>
+                                <GridViewColumn Header="Client Name" Width="100" />
+                                <GridViewColumn Header="Drone Model" Width="100"/>
+                                <GridViewColumn Header="Cost" Width="55"/>
+                                <GridViewColumn Header="Problem" Width="119"/>
+                                <GridViewColumn Header="Tag" Width="45"/>
+                                
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -46,7 +51,11 @@
                     <ListView x:Name="expressLVI" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,0,30" Height="330" Width="425">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn/>
+                                <GridViewColumn Header="Client Name" Width="100" />
+                                <GridViewColumn Header="Drone Model" Width="100"/>
+                                <GridViewColumn Header="Cost" Width="55"/>
+                                <GridViewColumn Header="Problem" Width="119"/>
+                                <GridViewColumn Header="Tag" Width="45"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -54,15 +63,22 @@
                 </Grid>
             </TabItem>
             <TabItem x:Name="finishedTab" Header="Finished List" Height="22" Width="100" >
-                <ListBox x:Name="finishedLVI" d:ItemsSource="{d:SampleData ItemCount=5}" Height="355"/>
+                <ListBox x:Name="finishListBox"  Height="355"/>
+                <ListBox ItemsSource="{Binding MyItems}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
             </TabItem>
         </TabControl>
 
         <Button x:Name="addButton" Content="Add" HorizontalAlignment="Left" Margin="112,381,0,0" VerticalAlignment="Top" Width="77" Height="25" RenderTransformOrigin="2.137,0.753" FontSize="14"/>
         <Button x:Name="editButton" Content="Edit" HorizontalAlignment="Left" Margin="194,381,0,0" VerticalAlignment="Top" Width="77" Height="25" RenderTransformOrigin="2.137,0.753" FontSize="14"/>
         <Button x:Name="deleteButton" Content="Delete" HorizontalAlignment="Left" Margin="276,381,0,0" VerticalAlignment="Top" Width="77" Height="25" RenderTransformOrigin="2.137,0.753" FontSize="14"/>
-        <GroupBox Header="Service Priority" Margin="205,312,497,89">
-            <Grid Height="27" Margin="0,0,0,0">
+        <GroupBox Header="Service Priority" Margin="205,312,486,89">
+            <Grid Height="27" Margin="0,0,-12,0">
                 <RadioButton x:Name="regularRB" Content="Regular" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="12" Height="18" Width="70"/>
                 <RadioButton x:Name="expressRB" Content="Express" Margin="70,0,0,0" VerticalAlignment="Center" FontSize="12" Height="18" RenderTransformOrigin="-0.08,-1" Grid.ColumnSpan="2"/>
             </Grid>

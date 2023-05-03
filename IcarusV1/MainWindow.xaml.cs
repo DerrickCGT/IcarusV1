@@ -24,6 +24,11 @@ namespace IcarusV1
         {
             InitializeComponent();
         }
+        //6.2	Create a global List<T> of type Drone called “FinishedList”. 
+        List<Drone> FinishedList = new List<Drone>();
+        //
+        Queue<Drone> RegularService = new Queue<Drone>();
+        Queue<Drone> ExpressService = new Queue<Drone>();
 
         private void expressFinishedButton_Click(object sender, RoutedEventArgs e)
         {
