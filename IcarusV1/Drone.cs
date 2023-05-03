@@ -16,9 +16,18 @@ namespace IcarusV1
 
         public Drone() { }
 
-        public void setClientName(string clientName)
+        public Drone(string clientName, string droneModel, string svProblem, double svCost, int svTag)
         {
-            this.clientName = clientName;
+            setClientName(clientName);
+            setDroneModel(droneModel);
+            setSvCost(svCost);
+            setSvTag(svTag);
+            setSvProblem(svProblem);
+        }
+
+        public void setClientName(string newName)
+        {
+            this.clientName = newName;
         }
 
         public string getClientName()
@@ -26,9 +35,9 @@ namespace IcarusV1
             return this.clientName;
         }
 
-        public void setDroneModel(string droneModel)
+        public void setDroneModel(string newDroneModel)
         {
-            this.droneModel = droneModel;
+            this.droneModel = newDroneModel;
         }
 
         public string getDroneModel()

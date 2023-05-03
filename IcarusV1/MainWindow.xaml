@@ -53,7 +53,7 @@
                     <Button x:Name="expressFinishedButton" Content="Service Completed" Height="25" RenderTransformOrigin="-3.31,6.084" Margin="120,330,149,0" Click="expressFinishedButton_Click" Width="130"/>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="finishedTab" Header="Finished Service" Height="22" Width="100" >
+            <TabItem x:Name="finishedTab" Header="Finished List" Height="22" Width="100" >
                 <ListBox x:Name="finishedLVI" d:ItemsSource="{d:SampleData ItemCount=5}" Height="355"/>
             </TabItem>
         </TabControl>
