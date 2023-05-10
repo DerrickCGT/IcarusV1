@@ -57,12 +57,13 @@ namespace IcarusV1
         }
 
         public void setSvCost(double svCost)
-        { 
-            this.svCost = (double)Math.Round(svCost,2);
+        {
+            this.svCost = svCost;
         }
 
         public double getSvCost()
         {
+            
             return this.svCost;
         }
 
