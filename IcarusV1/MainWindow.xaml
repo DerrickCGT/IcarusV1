@@ -6,9 +6,9 @@
         xmlns:wpfx="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:IcarusV1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="476" Width="850">
+        Title="MainWindow" Height="475" Width="850">
     <Grid Height="450">
-        <wpfx:IntegerUpDown x:Name="tagUpDown" Value="100" FormatString="F" Margin="129,0,0,89" RenderTransformOrigin="0.5,0.5" Increment="10" Height="49" VerticalAlignment="Bottom" HorizontalAlignment="Left" >
+        <wpfx:IntegerUpDown x:Name="tagUpDown" Value="100" Margin="129,0,0,89" RenderTransformOrigin="0.5,0.5" Increment="10" Height="49" VerticalAlignment="Bottom" HorizontalAlignment="Left" >
             <wpfx:IntegerUpDown.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="1"/>
@@ -20,7 +20,7 @@
         </wpfx:IntegerUpDown>
         <TextBox x:Name="modelTextBox" HorizontalAlignment="Left" Margin="149,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="204" FontSize="14" RenderTransformOrigin="-0.333,0.541" Height="21"/>
         <Label Content="Drone Model" HorizontalAlignment="Left" Margin="40,101,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.125,0.464" FontSize="14" Height="29" Width="92"/>
-        <TextBox x:Name="costTextBox" HorizontalAlignment="Left" Margin="149,135,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="204" FontSize="14" RenderTransformOrigin="-0.333,0.541" Height="21"/>
+        <TextBox x:Name="costTextBox" HorizontalAlignment="Left" Margin="149,135,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="204" FontSize="14" RenderTransformOrigin="-0.333,0.541" Height="21" PreviewTextInput="costTextBox_PreviewTextInput"/>
         <Label Content="Service Problem" HorizontalAlignment="Left" Margin="40,165,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.463,-1.154" FontSize="14" Height="29" Width="109"/>
         <TextBox x:Name="nameTextBox" HorizontalAlignment="Left" Margin="149,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="204" FontSize="14" RenderTransformOrigin="-0.333,0.541" Height="21"/>
         <Label Content="Client Name" HorizontalAlignment="Left" Margin="40,71,0,0" VerticalAlignment="Top" FontSize="14" Height="29" Width="86"/>
@@ -31,14 +31,14 @@
         <TabControl Name="tcSample" Margin="394,10,21,35" Height="390">
             <TabItem x:Name="regularTab" Header="Regular Service" Height="22" Width="100">
                 <Grid>
-                    <ListView x:Name="regularLVI" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,0,30" Height="330">
+                    <ListView x:Name="regularLVI" Margin="0,0,0,30" Height="330">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Client Name" Width="95" />
-                                <GridViewColumn Header="Drone Model" Width="95"/>
-                                <GridViewColumn Header="Cost" Width="50"/>
-                                <GridViewColumn Header="Problem" Width="125"/>
-                                <GridViewColumn Header="Tag" Width="50"/>
+                                <GridViewColumn Header="Client Name" Width="95" DisplayMemberBinding="{Binding Path=clientName}"/>
+                                <GridViewColumn Header="Drone Model" Width="95" DisplayMemberBinding="{Binding Path=droneModel}"/>
+                                <GridViewColumn Header="Cost" Width="50" DisplayMemberBinding="{Binding Path=svProblem}"/>
+                                <GridViewColumn Header="Problem" Width="125" DisplayMemberBinding="{Binding Path=svCost}"/>
+                                <GridViewColumn Header="Tag" Width="50" DisplayMemberBinding="{Binding Path=svTag}"/>
 
                             </GridView>
                         </ListView.View>
@@ -48,18 +48,18 @@
             </TabItem>
             <TabItem x:Name="expressTab" Header="Express Service" Height="22" Width="100" >
                 <Grid>
-                    <ListView x:Name="expressLVI" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,0,30" Height="330" Width="425">
+                    <ListView x:Name="expressLVI" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="2,0,2,30" Height="330" Width="425" Grid.ColumnSpan="2">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Client Name" Width="95" />
-                                <GridViewColumn Header="Drone Model" Width="95"/>
-                                <GridViewColumn Header="Cost" Width="50"/>
-                                <GridViewColumn Header="Problem" Width="125"/>
-                                <GridViewColumn Header="Tag" Width="50"/>
+                                <GridViewColumn Header="Client Name" Width="95" DisplayMemberBinding="{Binding Path=Name}"/>
+                                <GridViewColumn Header="Drone Model" Width="95" DisplayMemberBinding="{Binding Path=Model}"/>
+                                <GridViewColumn Header="Cost" Width="50" DisplayMemberBinding="{Binding Path=Cost}"/>
+                                <GridViewColumn Header="Problem" Width="125" DisplayMemberBinding="{Binding Path=Problem}"/>
+                                <GridViewColumn Header="Tag" Width="50" DisplayMemberBinding="{Binding Path=Name}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <Button x:Name="expressFinishedButton" Content="Service Completed" Height="25" RenderTransformOrigin="-3.31,6.084" Margin="120,330,149,0" Click="expressFinishedButton_Click" Width="130"/>
+                    <Button x:Name="expressFinishedButton" Content="Service Completed" Height="25" RenderTransformOrigin="-3.31,6.084" Margin="60,332,164,2" Click="expressFinishedButton_Click" Width="130" Grid.Column="1"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="finishedTab" Header="Finished List" Height="22" Width="100" >
@@ -78,13 +78,13 @@
                 <RadioButton x:Name="expressRB" Content="Express" Margin="70,0,10,0" VerticalAlignment="Center" FontSize="12" Height="18" RenderTransformOrigin="-0.08,-1"/>
             </Grid>
         </GroupBox>
-        <DockPanel Margin="0,0,0,16">
-            <StatusBar x:Name="statusBar" DockPanel.Dock="Bottom"  Width="150" Height="25" HorizontalAlignment="Left">
+
+        <StatusBar x:Name="statusBar"  Width="150" Height="25" HorizontalAlignment="Left" VerticalAlignment="Bottom" >
             <StatusBarItem>
-                <TextBlock Name="lblCursorPosition" />
+                <TextBlock Name="statusBarText" Width="150" Height="25" />
             </StatusBarItem>
-            </StatusBar>
-        </DockPanel>
+        </StatusBar>
+
 
 
     </Grid>
