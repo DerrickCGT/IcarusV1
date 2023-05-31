@@ -42,7 +42,7 @@ namespace IcarusV1
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(nameTextBox.Text)) {
-                MessageBox.Show("Please fill in the name and cost field.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Please fill in the name field.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -254,7 +254,6 @@ namespace IcarusV1
             problemTextBox.Clear();
             costTextBox.Clear();
             modelTextBox.Clear();
-            regularRB.IsChecked = false;
             expressRB.IsChecked = false;
         }
     }
