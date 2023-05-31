@@ -62,6 +62,7 @@ namespace IcarusV1
                 case 1:
                     drone.svCost = Double.Parse(costTextBox.Text);
                     RegularService.Enqueue(drone);
+                    tcSample.SelectedIndex = 0;
                     statusBarText.Text = "Regular Service Drone Added";
                     statusBarText.Foreground = Brushes.Green;
                     break;
@@ -254,7 +255,7 @@ namespace IcarusV1
             problemTextBox.Clear();
             costTextBox.Clear();
             modelTextBox.Clear();
-            expressRB.IsChecked = false;
+            regularRB.IsChecked = true;
         }
     }
 }
